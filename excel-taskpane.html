@@ -15,26 +15,24 @@
 
 <script>
     Office.onReady((info) => {
-
-        Office.actions.associate('action1', actionOne);
-
         if (info.host === Office.HostType.Excel) {
+            Office.actions.associate('action1', actionOne);
             document.getElementById("firstButton").onclick = firstButton;
+            document.getElementById("output").innerHTML = 'Ready - try Ctrl+Shift+Alt+T';
         }
-
     });
 
     async function firstButton() {
         const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+K']);
-        document.getElementById("output").innerHTML = `Shortcuts in use: ${JSON.stringify(shortcutsInUse)}`;
+        document.getElementById("output").innerHTML = `Shortcuts in use: ${JSON.stringify(shortcutsInUse)}<br>Replacing shortcuts...`;
         await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+K' });
+        document.getElementById("output").innerHTML += '<br>Now try Ctrl+Shift+Alt+K';
     }
 
     function actionOne() {
         console.log('>>> ACTION ONE TRIGGERED');
         document.getElementById("output").innerHTML += '<br>✅ Shortcut triggered successfully!';
     }
-
 </script>
 
 </html>
