@@ -8,9 +8,9 @@
 </head>
 
 <body>
-    <p>Before clicking button, try first Ctrl+Shift+Alt+T as defined in default json shortcuts.</p>
+    <p>Before clicking button, try first Shift+Alt+A as defined in default json shortcuts.</p>
     <div id="output"></div>
-    <button id="firstButton">Change action from Ctrl+Shift+Alt+T to Ctrl+Shift+Alt+M</button>
+    <button id="firstButton">Change action from Shift+Alt+A to Ctrl+Shift+Alt+T</button>
 </body>
 
 <script>
@@ -18,15 +18,15 @@
         if (info.host === Office.HostType.Excel) {
             Office.actions.associate('action1', actionOne);
             document.getElementById("firstButton").onclick = firstButton;
-            document.getElementById("output").innerHTML = 'Ready - try Ctrl+Shift+Alt+T';
+            document.getElementById("output").innerHTML = 'Ready - try Shift+Alt+A';
         }
     });
 
     async function firstButton() {
-        const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+M']);
+        const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+T']);
         document.getElementById("output").innerHTML = `Shortcuts in use: ${JSON.stringify(shortcutsInUse)}<br>Replacing shortcuts...`;
-        await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+M' });
-        document.getElementById("output").innerHTML += '<br>Now try Ctrl+Shift+Alt+M';
+        await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+T' });
+        document.getElementById("output").innerHTML += '<br>Now try Ctrl+Shift+Alt+T';
     }
 
     function actionOne() {
