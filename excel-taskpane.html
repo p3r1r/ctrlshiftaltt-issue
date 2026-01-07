@@ -8,9 +8,9 @@
 </head>
 
 <body>
-    <p>This Excel button will replace shortcuts and check for areShortcutsInUse.</p>
+    <p>Before clicking button, try first Ctrl+Shift+Alt+T as defined in default json shortcuts.</p>
     <div id="output"></div>
-    <button id="firstButton">Assign action to Ctrl+Shift+Alt+T</button>
+    <button id="firstButton">Change action from Ctrl+Shift+Alt+T to Ctrl+Shift+Alt+K</button>
 </body>
 
 <script>
@@ -25,9 +25,9 @@
     });
 
     async function firstButton() {
-        const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+T']);
+        const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+K']);
         document.getElementById("output").innerHTML = `Shortcuts in use: ${JSON.stringify(shortcutsInUse)}`;
-        await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+T' });
+        await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+K' });
     }
 
     function actionOne() {
