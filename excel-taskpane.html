@@ -1,0 +1,39 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+
+<body>
+    <p>This Excel button will replace shortcuts and check for areShortcutsInUse.</p>
+    <div id="output"></div>
+    <button id="firstButton">Assign action to Ctrl+Shift+Alt+T</button>
+</body>
+
+<script>
+    Office.onReady((info) => {
+
+        Office.actions.associate('action1', actionOne);
+
+        if (info.host === Office.HostType.Excel) {
+            document.getElementById("firstButton").onclick = firstButton;
+        }
+
+    });
+
+    async function firstButton() {
+        const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+T']);
+        document.getElementById("output").innerHTML = `Shortcuts in use: ${JSON.stringify(shortcutsInUse)}`;
+        await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+T' });
+    }
+
+    function actionOne() {
+        console.log('>>> ACTION ONE TRIGGERED');
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,17 @@
+{
+    "actions": [
+        {
+            "id": "action1",
+            "type": "ExecuteFunction",
+            "name": "Action 1"
+        }
+    ],
+    "shortcuts": [
+        {
+            "action": "action1",
+            "key": {
+                "default": "Ctrl+Shift+Alt+T"
+            }
+        }
+    ]
+}
