@@ -10,7 +10,7 @@
 <body>
     <p>Before clicking button, try first Ctrl+Shift+Alt+T as defined in default json shortcuts.</p>
     <div id="output"></div>
-    <button id="firstButton">Change action from Ctrl+Shift+Alt+T to Ctrl+Shift+Alt+K</button>
+    <button id="firstButton">Change action from Ctrl+Shift+Alt+T to Ctrl+Shift+Alt+M</button>
 </body>
 
 <script>
@@ -23,10 +23,10 @@
     });
 
     async function firstButton() {
-        const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+K']);
+        const shortcutsInUse = await Office.actions.areShortcutsInUse(['Ctrl+Shift+Alt+M']);
         document.getElementById("output").innerHTML = `Shortcuts in use: ${JSON.stringify(shortcutsInUse)}<br>Replacing shortcuts...`;
-        await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+K' });
-        document.getElementById("output").innerHTML += '<br>Now try Ctrl+Shift+Alt+K';
+        await Office.actions.replaceShortcuts({ action1: 'Ctrl+Shift+Alt+M' });
+        document.getElementById("output").innerHTML += '<br>Now try Ctrl+Shift+Alt+M';
     }
 
     function actionOne() {
